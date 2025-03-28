@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán - PhukienStore</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header (giống index.html) -->
+    <header>
+        <div class="logo">
+            <h1>PHUKIEN<span>STORE</span></h1>
+            <p>Phụ kiện điện thoại chính hãng</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="index.html#products">Sản phẩm</a></li>
+                <li><a href="index.html#about">Giới thiệu</a></li>
+                <li><a href="index.html#contact">Liên hệ</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Giỏ hàng <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Nội dung thanh toán -->
+    <section class="checkout">
+        <h2>THANH TOÁN</h2>
+        <div class="checkout-container">
+            <div class="checkout-form">
+                <h3>Thông tin khách hàng</h3>
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label for="name">Họ và tên</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Số điện thoại</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Địa chỉ</label>
+                        <textarea id="address" required></textarea>
+                    </div>
+                    
+                    <h3>Phương thức thanh toán</h3>
+                    <div class="payment-methods">
+                        <label>
+                            <input type="radio" name="payment" value="cod" checked>
+                            Thanh toán khi nhận hàng (COD)
+                        </label>
+                        <label>
+                            <input type="radio" name="payment" value="momo">
+                            Ví điện tử Momo
+                        </label>
+                        <label>
+                            <input type="radio" name="payment" value="bank">
+                            Chuyển khoản ngân hàng
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn">HOÀN TẤT ĐẶT HÀNG</button>
+                </form>
+            </div>
+            
+            <div class="order-summary">
+                <h3>Đơn hàng của bạn</h3>
+                <div id="order-items">
+                    <!-- Sản phẩm sẽ được thêm bằng JavaScript -->
+                </div>
+                <div class="order-total">
+                    <p>Tổng cộng: <span id="order-total">0</span>đ</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (giống index.html) -->
+    <footer>
+        <p>&copy; 2023 PhukienStore. All rights reserved.</p>
+        <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Hiển thị đơn hàng
+        function displayOrder() {
+            const orderItems = document.getElementById('order-items');
+            const orderTotal = document.getElementById('order-total');
+            
+            // Lấy giỏ hàng từ localStorage
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Xóa nội dung cũ
+            orderItems.innerHTML = '';
+            
+            let total = 0;
+            
+            // Thêm từng sản phẩm vào đơn hàng
+            cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'order-item';
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                itemDiv.innerHTML = `
+                    <p>${item.name} x ${item.quantity}</p>
+                    <p>${itemTotal.toLocaleString()}đ</p>
+                `;
+                
+                orderItems.appendChild(itemDiv);
+            });
+            
+            // Hiển thị tổng tiền
+            orderTotal.textContent = total.toLocaleString();
+        }
+        
+        // Xử lý form thanh toán
+        document.getElementById('payment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Lấy thông tin từ form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            
+            // Tạo đơn hàng
+            const order = {
+                customer: { name, email, phone, address },
+                paymentMethod,
+                items: JSON.parse(localStorage.getItem('cart')) || [],
+                date: new Date().toISOString()
+            };
+            
+            // Lưu đơn hàng (trong thực tế sẽ gửi lên server)
+            localStorage.setItem('currentOrder', JSON.stringify(order));
+            
+            // Xóa giỏ hàng
+            localStorage.removeItem('cart');
+            updateCartCount();
+            
+            // Chuyển đến trang cảm ơn
+            window.location.href = 'thankyou.html';
+        });
+        
+        // Khởi tạo
+        displayOrder();
+    </script>
+</body>
+</html>

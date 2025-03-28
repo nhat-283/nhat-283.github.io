@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phụ Kiện Điện Thoại - Shop Phụ Kiện Chính Hãng</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>PHUKIENXIN<span>STORE</span></h1>
+            <p>Phụ kiện điện thoại chính hãng</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="#products">Sản phẩm</a></li>
+                <li><a href="#about">Giới thiệu</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Giỏ hàng <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner">
+        <img src="/images/e5d50af3-c77e-4a45-9bf9-b373a2bcfa86.jpeg" alt="Banner phụ kiện điện thoại">
+        <div class="banner-text">
+            <h2>PHỤ KIỆN ĐIỆN THOẠI CHÍNH HÃNG</h2>
+            <p>Giảm giá 30% cho tất cả sản phẩm trong tháng này</p>
+            <a href="#products" class="btn">MUA NGAY</a>
+        </div>
+    </section>
+
+    <!-- Sản phẩm nổi bật -->
+    <section id="products" class="featured-products">
+        <h2>SẢN PHẨM </h2>
+        <!-- Sản phẩm nổi bật -->
+
+    <!-- Filter/Tag buttons -->
+    <div class="tag-filter">
+        <button class="tag-btn active" data-tag="all">Tất cả</button>
+        <button class="tag-btn" data-tag="op-lung">Ốp lưng</button>
+        <button class="tag-btn" data-tag="tai-nghe">Tai nghe</button>
+        <button class="tag-btn" data-tag="phu-kien">Phụ kiện khác</button>
+    </div>
+    
+    <div class="product-container">
+        <!-- Ốp lưng -->
+        <div class="product" data-tag="op-lung">
+            <img src="images/op-lung-1.jpg" alt="Ốp lưng iPhone">
+            <h3>Ốp lưng iPhone 13 Pro Max</h3>
+            <p class="price">199.000đ <span class="old-price">250.000đ</span></p>
+            <button class="add-to-cart" data-id="1" data-name="Ốp lưng iPhone 13 Pro Max" data-price="199000">Thêm vào giỏ</button>
+        </div>
+        
+        <div class="product" data-tag="op-lung">
+            <img src="images/op-lung-2.jpg" alt="Ốp lưng Samsung">
+            <h3>Ốp lưng Samsung Galaxy S22 Ultra</h3>
+            <p class="price">179.000đ <span class="old-price">220.000đ</span></p>
+            <button class="add-to-cart" data-id="2" data-name="Ốp lưng Samsung Galaxy S22 Ultra" data-price="179000">Thêm vào giỏ</button>
+        </div>
+        
+        <div class="product" data-tag="op-lung">
+            <img src="images/op-lung-3.jpg" alt="Ốp lưng trong suốt">
+            <h3>Ốp lưng trong suốt iPhone 14</h3>
+            <p class="price">149.000đ <span class="old-price">180.000đ</span></p>
+            <button class="add-to-cart" data-id="3" data-name="Ốp lưng trong suốt iPhone 14" data-price="149000">Thêm vào giỏ</button>
+        </div>
+        
+        <!-- Tai nghe -->
+        <div class="product" data-tag="tai-nghe">
+            <img src="images/tai-nghe-1.jpg" alt="Tai nghe Bluetooth">
+            <h3>Tai nghe Bluetooth AirPods 2</h3>
+            <p class="price">1.299.000đ <span class="old-price">1.500.000đ</span></p>
+            <button class="add-to-cart" data-id="4" data-name="Tai nghe Bluetooth AirPods 2" data-price="1299000">Thêm vào giỏ</button>
+        </div>
+        
+        <div class="product" data-tag="tai-nghe">
+            <img src="images/tai-nghe-2.jpg" alt="Tai nghe Sony">
+            <h3>Tai nghe Sony WH-CH510</h3>
+            <p class="price">890.000đ <span class="old-price">1.100.000đ</span></p>
+            <button class="add-to-cart" data-id="5" data-name="Tai nghe Sony WH-CH510" data-price="890000">Thêm vào giỏ</button>
+        </div>
+        
+        <div class="product" data-tag="tai-nghe">
+            <img src="images/tai-nghe-3.jpg" alt="Tai nghe JBL">
+            <h3>Tai nghe JBL Tune 125TWS</h3>
+            <p class="price">1.490.000đ <span class="old-price">1.800.000đ</span></p>
+            <button class="add-to-cart" data-id="6" data-name="Tai nghe JBL Tune 125TWS" data-price="1490000">Thêm vào giỏ</button>
+        </div>
+        
+        <!-- Phụ kiện khác -->
+        <div class="product" data-tag="phu-kien">
+            <img src="images/cap-sac-1.jpg" alt="Cáp sạc nhanh">
+            <h3>Cáp sạc nhanh 20W Type C</h3>
+            <p class="price">120.000đ <span class="old-price">150.000đ</span></p>
+            <button class="add-to-cart" data-id="7" data-name="Cáp sạc nhanh 20W Type C" data-price="120000">Thêm vào giỏ</button>
+        </div>
+        
+        <div class="product" data-tag="phu-kien">
+            <img src="images/pin-du-phong.jpg" alt="Pin dự phòng">
+            <h3>Pin dự phòng 10.000mAh</h3>
+            <p class="price">450.000đ <span class="old-price">550.000đ</span></p>
+            <button class="add-to-cart" data-id="8" data-name="Pin dự phòng 10.000mAh" data-price="450000">Thêm vào giỏ</button>
+        </div>
+        
+        <div class="product" data-tag="phu-kien">
+            <img src="images/giac-chuyen.jpg" alt="Giắc chuyển">
+            <h3>Giắc chuyển USB-C sang 3.5mm</h3>
+            <p class="price">85.000đ <span class="old-price">120.000đ</span></p>
+            <button class="add-to-cart" data-id="9" data-name="Giắc chuyển USB-C sang 3.5mm" data-price="85000">Thêm vào giỏ</button>
+        </div>
+        
+        <div class="product" data-tag="phu-kien">
+            <img src="images/loa-bluetooth.jpg" alt="Loa bluetooth">
+            <h3>Loa Bluetooth Xiaomi</h3>
+            <p class="price">650.000đ <span class="old-price">800.000đ</span></p>
+            <button class="add-to-cart" data-id="10" data-name="Loa Bluetooth Xiaomi" data-price="650000">Thêm vào giỏ</button>
+        </div>
+        
+        <div class="product" data-tag="phu-kien">
+            <img src="images/de-ban.jpg" alt="Đế sạc không dây">
+            <h3>Đế sạc không dây 15W</h3>
+            <p class="price">350.000đ <span class="old-price">450.000đ</span></p>
+            <button class="add-to-cart" data-id="11" data-name="Đế sạc không dây 15W" data-price="350000">Thêm vào giỏ</button>
+        </div>
+        
+        <div class="product" data-tag="phu-kien">
+            <img src="images/mieng-dan.jpg" alt="Miếng dán màn hình">
+            <h3>Miếng dán màn hình cường lực</h3>
+            <p class="price">99.000đ <span class="old-price">120.000đ</span></p>
+            <button class="add-to-cart" data-id="12" data-name="Miếng dán màn hình cường lực" data-price="99000">Thêm vào giỏ</button>
+        </div>
+    </div>
+
+
+    <!-- Giới thiệu -->
+    <section id="about" class="about">
+        <h2>GIỚI THIỆU</h2>
+        <p>PhukienXINStore là cửa hàng chuyên cung cấp các phụ kiện điện thoại chính hãng với giá cả hợp lý. Chúng tôi cam kết mang đến cho khách hàng những sản phẩm chất lượng nhất.</p>
+    </section>
+
+    <!-- Liên hệ -->
+    <section id="contact" class="contact">
+        <h2>LIÊN HỆ</h2>
+        <form>
+            <input type="text" placeholder="Họ và tên">
+            <input type="email" placeholder="Email">
+            <input type="tel" placeholder="Số điện thoại">
+            <textarea placeholder="Nội dung"></textarea>
+            <button type="submit">GỬI</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 PhukienStore. All rights reserved.</p>
+        <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cảm ơn - PhukienStore</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header (giống index.html) -->
+    <header>
+        <div class="logo">
+            <h1>PHUKIEN<span>STORE</span></h1>
+            <p>Phụ kiện điện thoại chính hãng</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="index.html#products">Sản phẩm</a></li>
+                <li><a href="index.html#about">Giới thiệu</a></li>
+                <li><a href="index.html#contact">Liên hệ</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Giỏ hàng <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Nội dung cảm ơn -->
+    <section class="thankyou">
+        <div class="thankyou-container">
+            <i class="fas fa-check-circle"></i>
+            <h2>CẢM ƠN BẠN ĐÃ ĐẶT HÀNG!</h2>
+            <p>Đơn hàng của bạn đã được tiếp nhận và đang được xử lý.</p>
+            <p>Mã đơn hàng: <strong id="order-id">#0001</strong></p>
+            <p>Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
+            <a href="index.html" class="btn">TIẾP TỤC MUA SẮM</a>
+        </div>
+    </section>
+
+    <!-- Footer (giống index.html) -->
+    <footer>
+        <p>&copy; 2023 PhukienStore. All rights reserved.</p>
+        <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Hiển thị mã đơn hàng
+        document.addEventListener('DOMContentLoaded', function() {
+            const order = JSON.parse(localStorage.getItem('currentOrder'));
+            if (order) {
+                // Tạo mã đơn hàng ngẫu nhiên (trong thực tế nên lấy từ server)
+                const orderId = '#' + Math.floor(1000 + Math.random() * 9000);
+                document.getElementById('order-id').textContent = orderId;
+            } else {
+                // Nếu không có đơn hàng, chuyển về trang chủ
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - PhukienStore</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header (giống index.html) -->
+    <header>
+        <div class="logo">
+            <h1>PHUKIEN<span>STORE</span></h1>
+            <p>Phụ kiện điện thoại chính hãng</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="index.html#products">Sản phẩm</a></li>
+                <li><a href="index.html#about">Giới thiệu</a></li>
+                <li><a href="index.html#contact">Liên hệ</a></li>
+                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Giỏ hàng <span id="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Nội dung giỏ hàng -->
+    <section class="cart">
+        <h2>GIỎ HÀNG CỦA BẠN</h2>
+        <div class="cart-container">
+            <table id="cart-table">
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <!-- Sản phẩm sẽ được thêm bằng JavaScript -->
+                </tbody>
+            </table>
+            
+            <div class="cart-total">
+                <h3>TỔNG CỘNG: <span id="total-amount">0</span>đ</h3>
+                <a href="checkout.html" class="btn">THANH TOÁN</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (giống index.html) -->
+    <footer>
+        <p>&copy; 2023 PhukienStore. All rights reserved.</p>
+        <div class="social">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Hiển thị giỏ hàng
+        function displayCart() {
+            const cartItems = document.getElementById('cart-items');
+            const totalAmount = document.getElementById('total-amount');
+            
+            // Lấy giỏ hàng từ localStorage
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Xóa nội dung cũ
+            cartItems.innerHTML = '';
+            
+            let total = 0;
+            
+            // Thêm từng sản phẩm vào bảng
+            cart.forEach(item => {
+                const row = document.createElement('tr');
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${item.price.toLocaleString()}đ</td>
+                    <td>
+                        <input type="number" min="1" value="${item.quantity}" 
+                               data-id="${item.id}" class="quantity-input">
+                    </td>
+                    <td>${itemTotal.toLocaleString()}đ</td>
+                    <td><button class="remove-item" data-id="${item.id}"><i class="fas fa-trash"></i></button></td>
+                `;
+                
+                cartItems.appendChild(row);
+            });
+            
+            // Hiển thị tổng tiền
+            totalAmount.textContent = total.toLocaleString();
+            
+            // Thêm sự kiện cho nút xóa
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    removeFromCart(id);
+                });
+            });
+            
+            // Thêm sự kiện cho input số lượng
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', function() {
+                    const id = this.getAttribute('data-id');
+                    const newQuantity = parseInt(this.value);
+                    updateQuantity(id, newQuantity);
+                });
+            });
+        }
+        
+        // Xóa sản phẩm khỏi giỏ hàng
+        function removeFromCart(id) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+            updateCartCount();
+        }
+        
+        // Cập nhật số lượng
+        function updateQuantity(id, newQuantity) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const item = cart.find(item => item.id === id);
+            
+            if (item) {
+                item.quantity = newQuantity;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                displayCart();
+                updateCartCount();
+            }
+        }
+        
+        // Khởi tạo
+        displayCart();
+    </script>
+</body>
+</html>
